@@ -1,0 +1,16 @@
+server:
+  port: 9090
+spring:
+    data:
+        mongodb:
+            host: localhost
+            port: 27017
+            database: nest
+    redis:
+      host: localhost
+      port: 6379
+    cache:
+        redis:
+            cache-null-values: false
+            time-to-live: 40000
+        type: redis
