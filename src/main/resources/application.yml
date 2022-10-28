@@ -5,7 +5,10 @@ spring:
         mongodb:
             host: localhost
             port: 27017
-            database: nest
+            username: root
+            password: password
+            authentication-database: admin
+            database: spring
     redis:
       host: localhost
       port: 6379

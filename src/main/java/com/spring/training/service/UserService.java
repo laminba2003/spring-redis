@@ -4,11 +4,10 @@ import com.spring.training.model.User;
 import com.spring.training.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -17,14 +16,30 @@ public class UserService {
 
     private final UserRepository repository;
 
-    @Cacheable(key = "#root.method.name")
     public List<User> getUsers() {
         return repository.findAll();
     }
 
     @Cacheable(key = "#id")
-    public Optional<User> getUser(String id) {
-        return repository.findById(id);
+    public User getUser(String id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
+    }
+
+    public User createUser(User user) {
+        return repository.save(user);
+    }
+
+    @CacheEvict(key = "#id")
+    public User updateUser(String id, User user) {
+        return repository.findById(id).map(entity -> {
+            user.setId(id);
+            return repository.save(user);
+        }).orElseThrow(() -> new RuntimeException("entity not found with id " + id));
+    }
+
+    @CacheEvict(key = "#id")
+    public void deleteUser(String id) {
+        repository.findById(id).ifPresent(user -> repository.delete(user));
     }
 
 }
