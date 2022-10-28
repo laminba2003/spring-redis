@@ -1,6 +1,6 @@
 # Spring Redis
 
-# Start the Services
+## Start the Services
 
 run this command to start all services in the correct order.
 
