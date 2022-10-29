@@ -1,5 +1,11 @@
 # Spring Redis
 
+Performance is one of the most important metrics we need to evaluate when developing a web service/Application. Keeping customers engaged is critical to any product and for this reason, it is extremely important to improve the performances and reduce page load times.
+
+When running a web server that interacts with a database, its operations may become a bottleneck. MongoDB is no exception here, and as our MongoDB database scales up, things can really slow down. This issue can even get worse if the database server is detached from the web server. In such systems, the communication with the database can cause a big overhead.
+
+In this example, we’ll introduce this method and see how we can use it to enhance the performance of our application using Spring Cache, Spring Data, and Redis.
+
 ## Start the Services
 
 run this command to start all services in the correct order.
