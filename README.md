@@ -7,3 +7,27 @@ run this command to start all services in the correct order.
 ```bash
 $ docker-compose up -d
 ```
+
+## Connect to the mongodb container
+
+```bash
+$ docker exec -it mongodb bash
+```
+
+### Connect to a specific database with mongodb shell
+
+```bash
+$ mongosh "mongodb://localhost:27017/spring"  --username root --password password  --authenticationDatabase admin
+```
+
+### Query collections
+
+```bash
+$ db.getCollectionNames()
+```
+
+### Query documents
+
+```bash
+$ db.users.find()
+```
