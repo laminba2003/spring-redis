@@ -20,6 +20,12 @@ $ docker exec -it mongodb bash
 $ mongosh "mongodb://localhost:27017/spring"  --username root --password password  --authenticationDatabase admin
 ```
 
+### Verify current connection
+
+```bash
+$ db.getMongo()
+```
+
 ### Query collections
 
 ```bash
@@ -30,4 +36,29 @@ $ db.getCollectionNames()
 
 ```bash
 $ db.users.find()
+```
+
+## Connect to the redis container
+
+```bash
+$ docker exec -it redis sh
+```
+
+### Connect to redis with the cli
+
+```bash
+$ redis-cli
+```
+
+### Query keys
+
+```bash
+$ KEYS *
+```
+
+
+### Monitor commands
+
+```bash
+$ MONITOR
 ```
