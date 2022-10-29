@@ -5,6 +5,8 @@ import com.spring.training.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,12 +28,12 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public User createUser(@RequestBody User user) {
+    public User createUser(@Valid @RequestBody User user) {
         return service.createUser(user);
     }
 
     @PutMapping("{id}")
-    public User updateUser(@PathVariable("id") String id, @RequestBody User user) {
+    public User updateUser(@PathVariable("id") String id, @Valid @RequestBody User user) {
         return service.updateUser(id, user);
     }
 

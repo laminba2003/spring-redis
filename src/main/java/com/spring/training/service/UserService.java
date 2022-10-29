@@ -1,5 +1,6 @@
 package com.spring.training.service;
 
+import com.spring.training.exception.EntityNotFoundException;
 import com.spring.training.model.User;
 import com.spring.training.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ public class UserService {
 
     @Cacheable(key = "#id")
     public User getUser(String id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("user not found with id : "+id));
     }
 
     public User createUser(User user) {
@@ -34,7 +35,7 @@ public class UserService {
         return repository.findById(id).map(entity -> {
             user.setId(id);
             return repository.save(user);
-        }).orElseThrow(() -> new RuntimeException("entity not found with id " + id));
+        }).orElseThrow(() -> new EntityNotFoundException("user not found with id " + id));
     }
 
     @CacheEvict(key = "#id")
