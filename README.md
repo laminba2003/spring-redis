@@ -38,6 +38,15 @@ $ db.getMongo()
 $ db.getCollectionNames()
 ```
 
+### Create documents
+
+```bash
+$ db.users.insert({"firstName" : "John",
+                   "lastName" : "Doe",
+                   "userName": "john",
+                   "password": "password"})
+```
+
 ### Query documents
 
 ```bash
