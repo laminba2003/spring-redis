@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -23,7 +24,7 @@ public class UserService {
 
     @Cacheable(key = "#id")
     public User getUser(String id) {
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("user not found with id : "+id));
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("user not found with id : " + id));
     }
 
     public User createUser(User user) {
@@ -40,7 +41,7 @@ public class UserService {
 
     @CacheEvict(key = "#id")
     public void deleteUser(String id) {
-        repository.findById(id).ifPresent(repository::delete);
+        repository.deleteById(id);
     }
 
 }
